@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -25,6 +26,14 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-source-google-sheets",
+      options: {
+        spreadsheetId: "16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU",
+        worksheetTitle: "People",
+        credentials: require("./client-secret.json"),
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
