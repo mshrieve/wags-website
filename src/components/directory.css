@@ -1,0 +1,44 @@
+.heading {
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.grid {
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fill, min-content);
+  grid-auto-flow: row;
+  width: 60wh;
+}
+
+.item {
+  border-bottom: 1px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+section .name {
+  font-size: 1rem;
+  grid-column: 1;
+}
+
+.links {
+  display: grid;
+  grid-auto-flow: columns;
+}
+
+/* section .item:last-child {
+  border-bottom: 0;
+} */
+
+section .institution {
+  font-size: 0.8rem;
+  color: darkgray;
+  grid-column: 3;
+}
+
+section .position {
+  font-size: 0.8rem;
+  grid-column: 3;
+}

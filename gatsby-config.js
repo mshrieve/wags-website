@@ -29,11 +29,27 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-google-sheets",
+      resolve: 'gatsby-source-google-sheets',
       options: {
-        spreadsheetId: "16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU",
-        worksheetTitle: "People",
-        credentials: require("./client-secret.json"),
+        spreadsheetId: '16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU',
+        worksheetTitle: 'People',
+        credentials: require('./client-secret.json'),
+      },
+    },
+    {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+        spreadsheetId: '16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU',
+        worksheetTitle: 'Institutions',
+        credentials: require('./client-secret.json'),
+      },
+    },
+    {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+        spreadsheetId: '16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU',
+        worksheetTitle: 'Positions',
+        credentials: require('./client-secret.json'),
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

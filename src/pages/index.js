@@ -1,42 +1,54 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql, Link } from 'gatsby'
 
-import "./index.css"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import './position.css'
+import Main from '../components/Main'
 
 export const query = graphql`
-  query MyQuery {
-    allGoogleSheetPeopleRow {
+  query {
+    allGoogleSheetPositionsRow {
       nodes {
+        type
         id
-        firstname
-        lastname
-        institution
-        position
+      }
+    }
+    allGoogleSheetInstitutionsRow {
+      nodes {
+        name
+        id
       }
     }
   }
 `
 
-const PersonItem = ({ firstname, lastname, position, institution }) => (
-  <section className="item">
-    <span className="name">{[firstname, lastname].join(" ")}</span>
-    <span className="position">{position}</span>
-    <span className="institution">{institution}</span>
-  </section>
+const IndexGrid = ({ children }) => (
+  <section className="indexGrid">{children}</section>
+)
+const PositionsPage = ({ type, data }) => (
+  <Main>
+    <IndexGrid>
+      <h1>WAGS Directory</h1>
+      <section className="links">
+        <Link to={`/All`}>all</Link>
+        <h3>by position: </h3>
+        <section className="linkSection">
+          {data.allGoogleSheetPositionsRow.nodes.map(({ type, id }) => (
+            <Link key={id} to={`/${type}`}>
+              {type}
+            </Link>
+          ))}
+        </section>
+        <h3>by institution: </h3>
+        <section className="linkSection">
+          {data.allGoogleSheetInstitutionsRow.nodes.map(({ name, id }) => (
+            <Link key={id} to={`/${name}`}>
+              {name}
+            </Link>
+          ))}
+        </section>
+      </section>
+    </IndexGrid>
+  </Main>
 )
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <section>
-      {data.allGoogleSheetPeopleRow.nodes.map(person => (
-        <PersonItem key={person.id} {...person} />
-      ))}
-    </section>
-  </Layout>
-)
-
-export default IndexPage
+export default PositionsPage

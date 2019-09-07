@@ -3,14 +3,14 @@
   max-width: 500px;
 }
 
-section {
+/* section {
   display: grid;
   padding: 1rem;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(12, 1rem);
   grid-row-gap: 1rem;
   border-bottom: 1px solid black;
-}
+} */
 
 section .item {
   display: contents;
