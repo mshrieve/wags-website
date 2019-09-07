@@ -6,13 +6,13 @@ import Main from '../components/Main'
 
 export const query = graphql`
   query {
-    allGoogleSheetPositionsRow {
+    allGoogleSheetPositionsRow(sort: { fields: type }) {
       nodes {
         type
         id
       }
     }
-    allGoogleSheetInstitutionsRow {
+    allGoogleSheetInstitutionsRow(sort: { fields: name }) {
       nodes {
         name
         id

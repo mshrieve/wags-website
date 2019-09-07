@@ -6,8 +6,8 @@
 
 // You can delete this file if you're not using it
 const path = require('path')
-const ByPosition = path.resolve('./src/pages/ByPosition.js')
-const ByInstitution = path.resolve('./src/pages/ByInstitution.js')
+const ByPosition = path.resolve('./src/templates/ByPosition.js')
+const ByInstitution = path.resolve('./src/templates/ByInstitution.js')
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.

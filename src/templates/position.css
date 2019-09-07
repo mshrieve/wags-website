@@ -21,7 +21,6 @@ body {
 }
 
 .indexGrid {
-  padding: 1rem;
   display: grid;
   align-self: start;
   justify-self: stretch;
@@ -32,10 +31,7 @@ section .name {
   font-size: 1rem;
   grid-column: 1;
 }
-h1 {
-  margin: 0;
-  border-bottom: 1px solid gray;
-}
+
 .links {
   padding-top: 2rem;
   display: grid;

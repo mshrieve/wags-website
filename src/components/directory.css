@@ -1,44 +1,43 @@
-.heading {
-  margin: 2rem auto;
-  max-width: 500px;
-}
-
-.grid {
+.directory_grid {
   display: grid;
-  padding: 1rem;
+  padding-top: 2rem;
+  row-gap: 1rem;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, min-content);
+  grid-template-rows: repeat(auto-fit, min-content);
   grid-auto-flow: row;
-  width: 60wh;
 }
 
-.item {
-  border-bottom: 1px solid black;
+.directory_person {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 1rem;
+  row-gap: 0.2rem;
+  place-content: center;
 }
 
-section .name {
+.directory_name {
   font-size: 1rem;
   grid-column: 1;
-}
-
-.links {
-  display: grid;
-  grid-auto-flow: columns;
 }
 
 /* section .item:last-child {
   border-bottom: 0;
 } */
 
-section .institution {
+.directory_institution {
   font-size: 0.8rem;
-  color: darkgray;
-  grid-column: 3;
+  grid-column: 2;
 }
 
-section .position {
+.directory_position {
   font-size: 0.8rem;
-  grid-column: 3;
+  grid-column: 2;
+  color: darkgray;
+}
+
+.directory_website {
+  font-size: 0.8rem;
+  grid-column: 2;
+  padding-top: 0.1rem;
 }

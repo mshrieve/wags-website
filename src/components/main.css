@@ -7,5 +7,6 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: minmax(auto, 600px);
-  place-content: center;
+  justify-content: center;
+  align-items: start;
 }

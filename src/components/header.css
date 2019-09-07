@@ -1,0 +1,14 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  align-items: space-between;
+}
+.header_link {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.header_text {
+  grid-row: 1;
+  grid-column: 1/5;
+}
