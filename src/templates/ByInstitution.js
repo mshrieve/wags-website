@@ -18,6 +18,7 @@ export const query = graphql`
         lastname
         position
         institution
+        website
       }
     }
   }

@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 
-import './position.css'
+import './index.css'
 import Main from '../components/Main'
-
+import Header from '../components/Header'
 export const query = graphql`
   query {
     allGoogleSheetPositionsRow(sort: { fields: type }) {
@@ -22,16 +22,16 @@ export const query = graphql`
 `
 
 const IndexGrid = ({ children }) => (
-  <section className="indexGrid">{children}</section>
+  <section className="index_grid">{children}</section>
 )
 const PositionsPage = ({ type, data }) => (
   <Main>
     <IndexGrid>
-      <h1>WAGS Directory</h1>
-      <section className="links">
+      <Header text={`WAGS Directory`} />
+      <section className="index_links">
         <Link to={`/All`}>all</Link>
         <h3>by position: </h3>
-        <section className="linkSection">
+        <section className="index_section">
           {data.allGoogleSheetPositionsRow.nodes.map(({ type, id }) => (
             <Link key={id} to={`/${type}`}>
               {type}
@@ -39,7 +39,7 @@ const PositionsPage = ({ type, data }) => (
           ))}
         </section>
         <h3>by institution: </h3>
-        <section className="linkSection">
+        <section className="index_section">
           {data.allGoogleSheetInstitutionsRow.nodes.map(({ name, id }) => (
             <Link key={id} to={`/${name}`}>
               {name}

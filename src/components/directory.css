@@ -1,10 +1,11 @@
 .directory_grid {
   display: grid;
-  padding-top: 2rem;
+  padding-top: 1rem;
   row-gap: 1rem;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(auto-fit, min-content);
   grid-auto-flow: row;
+  overflow: auto;
 }
 
 .directory_person {
@@ -19,6 +20,8 @@
 .directory_name {
   font-size: 1rem;
   grid-column: 1;
+  grid-row: 1/4;
+  align-self: center;
 }
 
 /* section .item:last-child {
@@ -39,5 +42,4 @@
 .directory_website {
   font-size: 0.8rem;
   grid-column: 2;
-  padding-top: 0.1rem;
 }

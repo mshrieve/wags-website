@@ -1,8 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import './position.css'
-
 import Main from '../components/Main'
 import IndexGrid from '../components/IndexGrid'
 import Directory from '../components/Directory'

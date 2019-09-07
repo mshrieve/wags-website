@@ -1,0 +1,7 @@
+.index_grid {
+  padding: 1rem;
+  display: grid;
+  align-self: start;
+  justify-self: stretch;
+  grid-template-rows: min-content 1fr;
+}

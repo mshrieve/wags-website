@@ -9,4 +9,5 @@
   grid-template-columns: minmax(auto, 600px);
   justify-content: center;
   align-items: start;
+  max-height: 100vh;
 }
