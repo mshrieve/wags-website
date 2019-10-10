@@ -24,25 +24,38 @@ const PositionsPage = ({ type, data }) => (
     <IndexGrid>
       <Header text={`WAGS Directory`} />
       <section className="index_links">
-        <Link to={`/All`}>all</Link>
-        <h3>by position: </h3>
-        <section className="index_section">
-          {data.positions.distinct.map(position => (
-            <Link to={`/${position}`}>{position}</Link>
-          ))}
-          <Select
-            options={data.positions.distinct.map(position => ({
-              value: position,
-              label: position,
-            }))}
-          />
+        <section className="sub_header">
+          <Link to={`/All`}>all</Link>
         </section>
-        <h3>by institution: </h3>
-        <section className="index_section">
-          {data.institutions.distinct.map(institution => (
-            <Link to={`/${institution}`}>{institution}</Link>
-          ))}
-        </section>
+        <form
+          onSubmit={event => {
+            console.log(event)
+            event.preventDefault()
+          }}
+        >
+          <section className="index_section">
+            <h2>positions: </h2>
+            <Select
+              options={data.positions.distinct.map(position => ({
+                value: position,
+                label: position,
+              }))}
+            />
+          </section>
+
+          <section className="index_section">
+            <h2>institutions: </h2>
+            <Select
+              options={data.institutions.distinct.map(institution => ({
+                value: institution,
+                label: institution,
+              }))}
+            />
+          </section>
+          <section className="index_section">
+            <button type="submit"> hi </button>
+          </section>
+        </form>
       </section>
     </IndexGrid>
   </Main>
