@@ -1,3 +1,12 @@
+require('dotenv').config({
+  path: `.env`,
+})
+
+const googleSheetsCredentials = {
+  client_email: process.env.CLIENT_EMAIL,
+  private_key: process.env.PRIVATE_KEY,
+}
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -29,27 +38,21 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-google-sheets',
+      resolve: 'gatsby-source-google-spreadsheet',
       options: {
+        // The `spreadsheetId` is required, it is found in the url of your document:
+        // https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit#gid=0
         spreadsheetId: '16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU',
-        worksheetTitle: 'People',
-        credentials: require('./client-secret.json'),
-      },
-    },
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-        spreadsheetId: '16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU',
-        worksheetTitle: 'Institutions',
-        credentials: require('./client-secret.json'),
-      },
-    },
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-        spreadsheetId: '16UZIcmSEH7Vuv9OcX5Qp8gMSqkf8Ffio_PYTEnDmUPU',
-        worksheetTitle: 'Positions',
-        credentials: require('./client-secret.json'),
+        // spreadsheetName: 'People',
+        typePrefix: 'Sheets',
+        credentials: googleSheetsCredentials,
+        // By implementing a `filterNode(node): boolean` function, you can choose to eliminate some nodes before
+        // they're added to Gatsby, the default behaviour is to include all nodes:
+        filterNode: node => Boolean(node),
+
+        // By implementing a `mapNode(node): node` function, you can provide your own node transformations directly
+        // during node sourcing, the default implementation is to return the node as is:
+        mapNode: node => node,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

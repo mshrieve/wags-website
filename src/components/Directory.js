@@ -10,14 +10,14 @@ const Directory = ({ people }) => (
 )
 
 const PersonItem = ({
-  firstname,
-  lastname,
+  firstName,
+  lastName,
   position,
   institution,
   website,
 }) => (
   <section className="directory_person">
-    <span className="directory_name">{[firstname, lastname].join(' ')}</span>
+    <span className="directory_name">{[firstName, lastName].join(' ')}</span>
     <span className="directory_institution">{institution}</span>
     <span className="directory_position">{position} </span>
     {website && (

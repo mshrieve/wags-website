@@ -13,31 +13,27 @@ const ByInstitution = path.resolve('./src/templates/ByInstitution.js')
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-  // Query for position nodes to use in creating pages.
+
   const result = await graphql(
     `
       {
-        allGoogleSheetPositionsRow {
-          nodes {
-            type
-          }
+        institutions: allSheetsPeople {
+          distinct(field: institution)
         }
-        allGoogleSheetInstitutionsRow {
-          nodes {
-            name
-          }
+        positions: allSheetsPeople {
+          distinct(field: position)
         }
       }
     `
   )
-  // Handle errors
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
+  // // Handle errors
+  // if (result.errors) {
+  //   reporter.panicOnBuild(`Error while running GraphQL query.`)
+  //   return
+  // }
   // Create pages for each markdown file.
 
-  result.data.allGoogleSheetPositionsRow.nodes.forEach(({ type }) => {
+  result.data.positions.forEach(({ type }) => {
     createPage({
       path: type,
       component: ByPosition,
@@ -49,7 +45,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  result.data.allGoogleSheetInstitutionsRow.nodes.forEach(({ name }) => {
+  result.data.institutions.forEach(({ name }) => {
     createPage({
       path: name,
       component: ByInstitution,

@@ -1,22 +1,17 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import Select from 'react-select'
 
 import './index.css'
 import Main from '../components/Main'
 import Header from '../components/Header'
 export const query = graphql`
-  query {
-    allGoogleSheetPositionsRow(sort: { fields: type }) {
-      nodes {
-        type
-        id
-      }
+  {
+    institutions: allSheetsPeople {
+      distinct(field: institution)
     }
-    allGoogleSheetInstitutionsRow(sort: { fields: name }) {
-      nodes {
-        name
-        id
-      }
+    positions: allSheetsPeople {
+      distinct(field: position)
     }
   }
 `
@@ -32,18 +27,20 @@ const PositionsPage = ({ type, data }) => (
         <Link to={`/All`}>all</Link>
         <h3>by position: </h3>
         <section className="index_section">
-          {data.allGoogleSheetPositionsRow.nodes.map(({ type, id }) => (
-            <Link key={id} to={`/${type}`}>
-              {type}
-            </Link>
+          {data.positions.distinct.map(position => (
+            <Link to={`/${position}`}>{position}</Link>
           ))}
+          <Select
+            options={data.positions.distinct.map(position => ({
+              value: position,
+              label: position,
+            }))}
+          />
         </section>
         <h3>by institution: </h3>
         <section className="index_section">
-          {data.allGoogleSheetInstitutionsRow.nodes.map(({ name, id }) => (
-            <Link key={id} to={`/${name}`}>
-              {name}
-            </Link>
+          {data.institutions.distinct.map(institution => (
+            <Link to={`/${institution}`}>{institution}</Link>
           ))}
         </section>
       </section>

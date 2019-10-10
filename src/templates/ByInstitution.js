@@ -8,14 +8,14 @@ import Header from '../components/Header'
 
 export const query = graphql`
   query($name: String) {
-    allGoogleSheetPeopleRow(
+    allSheetsPeople(
       filter: { institution: { eq: $name } }
-      sort: { fields: lastname }
+      sort: { fields: lastName }
     ) {
       nodes {
         id
-        firstname
-        lastname
+        firstName
+        lastName
         position
         institution
         website
