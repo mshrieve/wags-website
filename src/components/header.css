@@ -5,6 +5,7 @@
   align-items: space-between;
   border-bottom: 1px solid darkgray;
   padding-bottom: 0.5rem;
+  padding-top: 1rem;
 }
 .header_link {
   grid-row: 1;

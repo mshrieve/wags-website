@@ -33,7 +33,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // }
   // Create pages for each markdown file.
 
-  result.data.positions.forEach(({ type }) => {
+  result.data.positions.distinct.forEach(type => {
     createPage({
       path: type,
       component: ByPosition,
@@ -45,7 +45,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   })
 
-  result.data.institutions.forEach(({ name }) => {
+  result.data.institutions.distinct.forEach(name => {
     createPage({
       path: name,
       component: ByInstitution,

@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "babel-plugin-styled-components": "^1.10.6",
     "dotenv": "^8.1.0",
     "gatsby": "^2.13.73",
@@ -19,6 +20,7 @@
     "gatsby-source-google-spreadsheet": "^2.0.0",
     "gatsby-transformer-sharp": "^2.2.7",
     "prop-types": "^15.7.2",
+    "query-string": "^6.8.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
