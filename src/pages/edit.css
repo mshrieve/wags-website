@@ -1,0 +1,68 @@
+.edit__main {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100vh - 1rem;
+  border: 0.25rem solid var(--gray10);
+  background-color: var(--gray2);
+  /* padding: 1rem; */
+}
+
+.edit__grid {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr minmax(max-content, 30rem) 1fr; */
+
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+
+.edit__input-section > * {
+  grid-column: 1;
+}
+.edit__input-section {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-auto-flow: column;
+  row-gap: 1rem;
+  padding: 1rem;
+}
+
+.edit__email-button {
+  background-color: var(--red2);
+  width: auto;
+  box-shadow: 0px 3px 1px var(--gray10);
+  /* justify-self: center; */
+}
+
+.edit__email-button:hover {
+  background-color: var(--red3);
+}
+
+.edit__email-button:active {
+  background-color: var(--red4);
+}
+
+.edit__login-button {
+  width: auto;
+  box-shadow: 0px 3px 1px var(--gray10);
+  /* justify-self: center; */
+}
+
+.edit__grid > input {
+  box-shadow: 0px 3px 1px var(--gray10);
+  width: auto;
+}
+
+p {
+  font-weight: 999;
+}
+
+hr {
+  color: var(--gray2);
+  width: 100%;
+}

@@ -29,9 +29,19 @@ const PositionsPage = ({ type, data }) => {
       ...values,
       [name]: option,
     }))
+
   const handleConfirm = () => {
-    navigate('Filter', { state: { values } })
+    navigate('Filter', { state: { filter: getFilterState() } })
   }
+  const getFilterState = () =>
+    console.log(values) ||
+    Object.keys(values).reduce(
+      (state, param) => ({
+        ...state,
+        [param]: values[param].map(x => x.value),
+      }),
+      {}
+    )
 
   return (
     <Main>
@@ -39,7 +49,7 @@ const PositionsPage = ({ type, data }) => {
         <Header text={`WAGS Directory`} />
         <section className="index_links">
           <section className="sub_header">
-            <Link to={`/All`}>all</Link>
+            <Link to={`/Filter`}>all</Link>
           </section>
           <form
             onSubmit={event => {
@@ -55,9 +65,9 @@ const PositionsPage = ({ type, data }) => {
                   value: position,
                   label: position,
                 }))}
-                value={values['positions']}
-                name="positions"
-                onChange={handleChange('positions')}
+                value={values['position']}
+                name="position"
+                onChange={handleChange('position')}
               />
             </section>
 
@@ -69,10 +79,9 @@ const PositionsPage = ({ type, data }) => {
                   value: institution,
                   label: institution,
                 }))}
-                name="insitutions"
-                value={values['institutions']}
-                name="institutions"
-                onChange={handleChange('institutions')}
+                value={values['institution']}
+                name="institution"
+                onChange={handleChange('institution')}
               />
             </section>
             <section className="index_section">

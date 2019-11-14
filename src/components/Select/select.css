@@ -1,0 +1,49 @@
+.select-section {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  border: 0;
+  border-radius: 0px;
+  border-style: none;
+  border-width: 0px;
+  background: white;
+  width: 20rem;
+}
+
+.select__control {
+  border-radius: 0 !important;
+  border: 1 !important;
+  background: white;
+  width: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-color: var(--gray10) !important;
+  box-shadow: none !important;
+}
+
+.select__control:focus {
+  border-color: var(--gray10) !important;
+}
+
+.select__indicators-container {
+  padding: 0;
+}
+
+.select__indicator-separator {
+  display: none;
+}
+
+.select__dropdown-indicator:hover {
+  color: #505050;
+}
+
+.select__control:hover .select__dropdown-indicator,
+.select__control:hover .select__placeholder {
+  color: #505050;
+}
+
+.select__menu {
+  border-radius: 0 !important;
+}

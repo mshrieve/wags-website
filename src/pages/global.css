@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  pointer-events: all;
+}
+
+/* code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  } */
+
+@import url('https://rsms.me/inter/inter.css');
+html {
+  font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
+:root {
+  --black: #111111;
+  --gray1: #f0f0f0;
+  --gray2: #e0e0e0;
+  --gray3: #d0d0d0;
+  --gray4: #c0c0c0;
+  --gray5: #b0b0b0;
+  --gray6: #a0a0a0;
+  --gray7: #909090;
+  --gray8: #808080;
+  --gray9: #707070;
+  --gray10: #606060;
+
+  --red1: #ffe0e0;
+  --red2: #ffc8c8;
+  --red3: #ffa0a0;
+  --red4: #ff7878;
+  --red5: #ff5050;
+
+  --green1: #e0ffe0;
+  --green2: #c8ffc8;
+  --green3: #a0ffa0;
+  --green4: #78ff78;
+  --green5: #50ff50;
+
+  --blue1: #c0e0ff;
+  --blue2: #a0d0ff;
+  --blue3: #70c0ff;
+  --blue4: #50b0ff;
+  --blue5: #20a0ff;
+
+  --cyan1: #e0ffff;
+  --cyan2: #c8ffff;
+  --cyan3: #a0ffff;
+  --cyan4: #78ffff;
+  --cyan5: #50ffff;
+
+  --magenta1: #ffe0ff;
+  --magenta2: #ffc8ff;
+  --magenta3: #ffa0ff;
+  --magenta4: #ff78ff;
+  --magenta5: #ff50ff;
+
+  --yellow1: #ffffe0;
+  --yellow2: #ffffc8;
+  --yellow3: #ffffa0;
+  --yellow4: #ffff78;
+  --yellow5: #ffff50;
+}
