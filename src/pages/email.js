@@ -22,7 +22,7 @@ const IndexPage = ({}) => {
 
     const body = querystring.stringify(values)
 
-    fetch('/.netlify/functions/sheet', {
+    fetch('/.netlify/functions/passcode', {
       method: 'POST',
       body,
     })
