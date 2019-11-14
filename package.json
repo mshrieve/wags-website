@@ -8,12 +8,13 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "lambda": "netlify-lambda serve src/functions",
+    "build:lambda": "netlify-lambda build src/functions",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
     "postinstall": "netlify-lambda install",
-    "dev": "netlify dev -f src/functions"
+    "dev": "netlify dev"
   },
   "dependencies": {
     "@primer/octicons-react": "^9.2.0",
@@ -33,6 +34,7 @@
     "gatsby-source-google-sheets": "^1.1.1",
     "gatsby-source-google-spreadsheet": "^2.0.0",
     "gatsby-transformer-sharp": "^2.2.7",
+    "google-spreadsheet": "^2.0.8",
     "netlify-lambda": "^1.6.3",
     "nodemailer": "^6.3.1",
     "prop-types": "^15.7.2",

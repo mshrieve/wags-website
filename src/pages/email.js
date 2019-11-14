@@ -22,17 +22,17 @@ const IndexPage = ({}) => {
 
     const body = querystring.stringify(values)
 
-    fetch('/.netlify/functions/passcode', {
+    fetch('/.netlify/functions/sheet', {
       method: 'POST',
       body,
     })
-      .then(response => console.log(response))
-      // .then(json => console.log(json))
-      //   .then(({ authenticated, id, email }) =>
-      //     authenticated
-      //       ? navigate('edit', { authenticated, id, email })
-      //       : handleReject()
-      //   )
+      .then(response => response.json())
+      .then(json => console.log(json) || json)
+      // .then(({ authenticated, id, email }) =>
+      //   authenticated
+      //     ? navigate('edit', { authenticated, id, email })
+      //     : handleReject()
+      // )
       .catch(error => console.error(error))
   }
 
