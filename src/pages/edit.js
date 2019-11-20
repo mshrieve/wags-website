@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
-// import useAuth from '~/context/auth'
+import { navigate } from 'gatsby'
 import Input from '~/components/Input'
 import Button from '~/components/Button'
 import Select from '~/components/Select'
 import querystring from 'querystring'
-import './edit.css'
-import './global.css'
+import '~/pages/edit.css'
+import '~/pages/global.css'
 
 export const query = graphql`
   {
-    people: allSheetsPeople {
-      nodes {
-        firstName
-        lastName
-        position
-        institution
-      }
-    }
     institutions: allSheetsPeople {
       distinct(field: institution)
     }
@@ -27,8 +19,29 @@ export const query = graphql`
   }
 `
 
-const IndexPage = ({ data }) => {
-  const [values, setValues] = useState({})
+const IndexPage = ({ data, location, pageContext }) => {
+  const user = location.state
+  if (!(user && user.authenticated)) {
+    navigate('email')
+    return null
+  }
+
+  const makeOption = value => ({
+    value,
+    label: value,
+  })
+
+  const defaults = user
+    ? {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        institution: makeOption(user.institution),
+        position: makeOption(user.position),
+      }
+    : {}
+
+  const [values, setValues] = useState(defaults)
   const handleChange = event =>
     setValues({
       ...values,
@@ -40,11 +53,6 @@ const IndexPage = ({ data }) => {
       ...values,
       [name]: option,
     }))
-
-  const makeOption = value => ({
-    value,
-    label: value,
-  })
 
   const institutionOptions = data.institutions.distinct.map(makeOption)
   const positionOptions = data.positions.distinct.map(makeOption)
@@ -81,7 +89,7 @@ const IndexPage = ({ data }) => {
       <form className="edit__form" onSubmit={handleSubmit}>
         <section className="edit__grid">
           <section className="edit__input-section">
-            <span className="edit__email">hi</span>
+            <span className="edit__email">edit details</span>
             <Input
               name="firstName"
               value={values['firstName']}
@@ -126,8 +134,7 @@ const IndexPage = ({ data }) => {
               onChange={handleSelectChange('tag3')}
               placeholder={'tag'}
             />
-            tags
-            <hr />
+            {/* <hr /> */}
             <Button
               className="edit__login-button"
               type="submit"

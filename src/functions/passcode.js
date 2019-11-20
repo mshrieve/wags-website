@@ -5,14 +5,14 @@ require('dotenv').config({
   path: `.env`,
 })
 
-const handleSuccess = ({ id, email }) => ({
-  statusCode: 200,
-  body: JSON.stringify({
-    authenticated: true,
-    id,
-    email,
-  }),
-})
+const handleSuccess = user =>
+  console.log('success', user) || {
+    statusCode: 200,
+    body: JSON.stringify({
+      authenticated: true,
+      ...user,
+    }),
+  }
 
 const handleReject = message => ({
   statusCode: 403,
@@ -52,19 +52,27 @@ const getRows = sheet =>
   })
 
 exports.handler = async (event, context) => {
-  const { email, passcode } = querystring.parse(event.body)
-  if (!(email && passcode)) return handleReject('missing email and/or id')
-
-  console.log('hi')
-  useServiceAccount()
+  const { email, userId } = querystring.parse(event.body)
+  if (!(email && userId)) return handleReject('missing email and/or id')
+  console.log(userId, email)
+  const user = await useServiceAccount()
     .then(() => getInfo())
     .then(info => getSheet(info))
     .then(sheet => getRows(sheet))
-    .then(
-      rows =>
-        console.log('rows', rows) ||
-        rows.find(row => row.email == 'mshrieve@gmail.com')
-    )
-    .then(row => console.log(handleSuccess(row)) || row)
-    .then(row => (row ? handleSuccess(row) : handleReject()))
+    .then(rows => rows.find(row => row.email == email))
+    .then(row => ({
+      // google-spreadsheet makes them lowercase :(
+      userId: row.userid,
+      firstName: row.firstname,
+      lastName: row.lastname,
+      institution: row.institution,
+      position: row.position,
+    }))
+
+  console.log(user)
+  if (user) {
+    console.log(user)
+    if (user.userId == userId) return handleSuccess(user)
+    else return handleReject('wrong id')
+  } else return handleReject('email not found')
 }

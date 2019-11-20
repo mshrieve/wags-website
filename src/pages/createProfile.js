@@ -22,7 +22,7 @@ const IndexPage = ({}) => {
 
     const body = querystring.stringify(values)
 
-    fetch('/.netlify/functions/passcode', {
+    fetch('/.netlify/functions/create', {
       method: 'POST',
       body,
     })
@@ -47,13 +47,6 @@ const IndexPage = ({}) => {
               onChange={handleChange}
               placeholder="Email"
               tip="Email"
-            />
-            <Input
-              name="userId"
-              value={values['userId']}
-              onChange={handleChange}
-              placeholder="user id"
-              tip="user id"
             />
             {/* <hr /> */}
             <Button

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { graphql, Link } from 'gatsby'
 import Select from 'react-select'
 import { navigate } from '@reach/router'
-import queryString from 'query-string'
-import './index.css'
 import Main from '../components/Main'
 import Header from '../components/Header'
+
+import './index.css'
 
 export const query = graphql`
   {
@@ -18,9 +18,6 @@ export const query = graphql`
   }
 `
 
-const IndexGrid = ({ children }) => (
-  <section className="index_grid">{children}</section>
-)
 const PositionsPage = ({ type, data }) => {
   const [values, setValues] = useState({})
   const handleChange = name => option =>
@@ -45,7 +42,7 @@ const PositionsPage = ({ type, data }) => {
 
   return (
     <Main>
-      <IndexGrid>
+      <section className="index_grid">
         <Header text={`WAGS Directory`} />
         <section className="index_links">
           <section className="sub_header">
@@ -89,7 +86,7 @@ const PositionsPage = ({ type, data }) => {
             </section>
           </form>
         </section>
-      </IndexGrid>
+      </section>
     </Main>
   )
 }
