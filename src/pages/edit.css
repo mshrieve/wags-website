@@ -5,7 +5,7 @@
   right: 0;
   left: 0;
   height: 100vh - 1rem;
-  border: 0.25rem solid var(--gray10);
+  /* border: 0.25rem solid var(--gray10); */
   background-color: var(--gray2);
   /* padding: 1rem; */
 }
@@ -13,16 +13,13 @@
 .edit__grid {
   display: grid;
   height: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
   /* grid-template-columns: 1fr minmax(max-content, 30rem) 1fr; */
 
   grid-template-rows: 1fr;
-  align-items: center;
+  align-items: start;
 }
 
-.edit__input-section > * {
-  grid-column: 1;
-}
 .edit__input-section {
   grid-column: 2;
   display: grid;
@@ -49,7 +46,7 @@
 
 .edit__login-button {
   width: auto;
-  box-shadow: 0px 3px 1px var(--gray10);
+  /* box-shadow: 0px 3px 1px var(--gray10); */
   /* justify-self: center; */
 }
 

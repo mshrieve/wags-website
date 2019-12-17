@@ -12,12 +12,12 @@ button {
 
 button:hover {
   background-color: gray; /* Green */
-  color: white;
+  /* color: white; */
 }
 
 button:active {
   background-color: black; /* Green */
-  color: white;
+  /* color: white; */
 }
 
 h2 {

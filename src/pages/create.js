@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Input from '~/components/Input'
 import Button from '~/components/Button'
 import Select from '~/components/Select'
+import { navigate } from '@reach/router'
 import api from '~/services/api'
 import '~/pages/edit.css'
 import '~/pages/global.css'
@@ -18,7 +19,7 @@ export const query = graphql`
   }
 `
 
-const PROMPT = `Create a new profile: start by entering your email.`
+const PROMPT = `Create a new profile.`
 const IndexPage = ({ data, location, pageContext }) => {
   const [values, setValues] = useState({})
   const [state, setState] = useState(0)
@@ -73,6 +74,7 @@ const IndexPage = ({ data, location, pageContext }) => {
       values,
       result => {
         console.log('created user', result)
+        navigate('userCreated', { state: result })
       },
       result => {
         console.log('something went wrong', result)
@@ -106,27 +108,28 @@ const IndexPage = ({ data, location, pageContext }) => {
       <form className="edit__form" onSubmit={handleSubmit}>
         <section className="edit__grid">
           <section className="edit__input-section">
-            <span className="edit__email">{PROMPT}</span>
+            <h2>{PROMPT}</h2>
+            <span>
+              Your email will only be used to edit your information in the
+              future. It won't be displayed in the directory.
+            </span>
             <Input
               name="email"
               value={values['email']}
               onChange={handleChange}
               placeholder="email"
-              tip="email"
             />
             <Input
               name="firstName"
               value={values['firstName']}
               onChange={handleChange}
               placeholder="First Name"
-              tip="First Name"
             />
             <Input
               name="lastName"
               value={values['lastName']}
               onChange={handleChange}
               placeholder="Last Name"
-              tip="Last Name"
             />
             <Select
               // options={institutionOptions}
@@ -141,6 +144,12 @@ const IndexPage = ({ data, location, pageContext }) => {
               value={values.position}
               onChange={handleChange}
               placeholder={'position'}
+            />
+            <Input
+              name="website"
+              value={values['website']}
+              onChange={handleChange}
+              placeholder="Website"
             />
             <Select
               name="tag1"

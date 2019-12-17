@@ -55,27 +55,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
   // Create pages for each markdown file.
 
-  result.data.positions.distinct.forEach(type => {
-    createPage({
-      path: type,
-      component: ByPosition,
-      // In your blog post template's graphql query, you can use path
-      // as a GraphQL variable to query for data from the markdown file.
-      context: {
-        type,
-      },
-    })
-  })
+  // result.data.positions.distinct.forEach(type => {
+  //   createPage({
+  //     path: type,
+  //     component: ByPosition,
+  //     // In your blog post template's graphql query, you can use path
+  //     // as a GraphQL variable to query for data from the markdown file.
+  //     context: {
+  //       type,
+  //     },
+  //   })
+  // })
 
-  result.data.institutions.distinct.forEach(name => {
-    createPage({
-      path: name,
-      component: ByInstitution,
-      // In your blog post template's graphql query, you can use path
-      // as a GraphQL variable to query for data from the markdown file.
-      context: {
-        name,
-      },
-    })
-  })
+  // result.data.institutions.distinct.forEach(name => {
+  //   createPage({
+  //     path: name,
+  //     component: ByInstitution,
+  //     // In your blog post template's graphql query, you can use path
+  //     // as a GraphQL variable to query for data from the markdown file.
+  //     context: {
+  //       name,
+  //     },
+  //   })
+  // })
 }

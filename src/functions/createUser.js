@@ -10,6 +10,8 @@ exports.handler = async (event, context) => {
     lastName,
     institution,
     position,
+    website,
+
     tag1,
     tag2,
     tag3,
@@ -44,7 +46,37 @@ exports.handler = async (event, context) => {
     lastname: lastName,
     institution,
     position,
+    website,
+    tag1,
+    tag2,
+    tag3,
   })
-    .then(result => console.log('success', result) || resolve(result))
+    .then(
+      ({
+        email,
+        userid,
+        firstname,
+        lastname,
+        institution,
+        position,
+        website,
+        tag1,
+        tag2,
+        tag3,
+      }) =>
+        console.log('user created success ' + email) ||
+        resolve({
+          email,
+          userId: userid,
+          firstName: firstname,
+          lastName: lastname,
+          institution,
+          position,
+          website,
+          tag1,
+          tag2,
+          tag3,
+        })
+    )
     .catch(error => console.log('error', error) || reject(error))
 }

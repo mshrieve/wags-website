@@ -4,10 +4,11 @@
   bottom: 0;
   right: 0;
   left: 0;
+  background-color: var(--gray2);
+  max-height: 100vh;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: minmax(auto, 600px);
   justify-content: center;
   align-items: start;
-  max-height: 100vh;
 }

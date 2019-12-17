@@ -8,7 +8,7 @@ const Input = ({ value, ...props }) => {
       <input className="input__main" value={value || ''} {...props} />
 
       <span className={classNames('input__tip', value && 'input__tip-visible')}>
-        {props.tip}
+        {props.tip || props.placeholder || props.name}
       </span>
     </section>
   )

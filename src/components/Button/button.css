@@ -40,7 +40,7 @@
 
 .button--active {
   background-color: #363636ff;
-  color: white;
+  /* color: white; */
 }
 
 .button--inactive {
