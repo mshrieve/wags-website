@@ -51,6 +51,8 @@ const getRows = sheet =>
     sheet.getRows((err, rows) => (err ? reject(err) : resolve(rows)))
   })
 
+
+
 exports.handler = async (event, context) => {
   const { email, userId } = querystring.parse(event.body)
   if (!(email && userId)) return handleReject('missing email and/or id')

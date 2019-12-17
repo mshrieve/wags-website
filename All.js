@@ -7,7 +7,7 @@ import Directory from '../components/Directory'
 import Header from '../components/Header'
 export const query = graphql`
   {
-    allSheetsPeople(sort: { fields: lastName }) {
+    allSheetsDirectory(sort: { fields: lastName }) {
       nodes {
         id
         firstName
@@ -24,7 +24,7 @@ const All = ({ data }) => (
   <Main>
     <IndexGrid>
       <Header text={`All`} linkPath={'/'} />
-      <Directory people={data.allSheetsPeople.nodes} />
+      <Directory people={data.allSheetsDirectory.nodes} />
     </IndexGrid>
   </Main>
 )

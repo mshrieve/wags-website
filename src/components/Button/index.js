@@ -7,8 +7,8 @@ const Button = ({ children, state, onClick, type, icon, className }) => (
   <button
     className={classNames(className, {
       button: true,
-      'grid-button--active': state == 'active',
-      'grid-button--inactive': state == 'inactive',
+      'grid-button--active': state === 'active',
+      'grid-button--inactive': state === 'inactive',
     })}
     type={type}
     onClick={onClick}

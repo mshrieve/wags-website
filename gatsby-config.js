@@ -9,17 +9,17 @@ const googleSheetsCredentials = {
 }
 
 module.exports = {
-  // developMiddleware: app => {
-  //   app.use(
-  //     '/.netlify/functions/',
-  //     proxy({
-  //       target: 'http://localhost:9000',
-  //       pathRewrite: {
-  //         '/.netlify/functions/': '',
-  //       },
-  //     })
-  //   )
-  // },
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      })
+    )
+  },
   siteMetadata: {
     title: `Wags Directory`,
     description: ``,
@@ -72,7 +72,13 @@ module.exports = {
 
         // By implementing a `mapNode(node): node` function, you can provide your own node transformations directly
         // during node sourcing, the default implementation is to return the node as is:
-        mapNode: node => node,
+        mapNode: node =>
+          // replace null entries with empty strings
+          Object.keys(node)
+            .map(key =>
+              node[key] === null ? { [key]: '' } : { [key]: node[key] }
+            )
+            .reduce((prev, entry) => ({ ...prev, ...entry }), {}),
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -9,10 +9,10 @@ import './index.css'
 
 export const query = graphql`
   {
-    institutions: allSheetsPeople {
+    institutions: allSheetsDirectory {
       distinct(field: institution)
     }
-    positions: allSheetsPeople {
+    positions: allSheetsDirectory {
       distinct(field: position)
     }
   }

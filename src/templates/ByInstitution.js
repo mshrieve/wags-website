@@ -8,7 +8,7 @@ import Header from '../components/Header'
 
 export const query = graphql`
   query($name: String) {
-    allSheetsPeople(
+    allSheetsDirectory(
       filter: { institution: { eq: $name } }
       sort: { fields: lastName }
     ) {

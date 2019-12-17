@@ -7,17 +7,51 @@ import './select.css'
 const DropdownIndicator = props => {
   return (
     <components.DropdownIndicator {...props}>
-      <Octicon size='medium' icon={ChevronDown} />
+      <Octicon
+        className={'select__dropdown-indicator'}
+        size="medium"
+        icon={ChevronDown}
+      />
     </components.DropdownIndicator>
   )
 }
+const makeOption = value =>
+  value
+    ? {
+        value,
+        label: value,
+      }
+    : null
 
-const SelectComponent = props => (
-  <Creatable
-    {...props}
-    classNamePrefix='select'
-    components={{ DropdownIndicator }}
-  />
-)
+const SelectComponent = ({
+  options = [],
+  onChange,
+  value,
+  name,
+  placeholder,
+  ...props
+}) => {
+  // we pass through only value, letting label = value
+  const handleChange = option =>
+    onChange({ target: { name, value: option.value } })
+  return (
+    <Creatable
+      {...props}
+      name={name}
+      options={options.map(makeOption)}
+      value={makeOption(value)}
+      onChange={handleChange}
+      placeholder={placeholder || name}
+      classNamePrefix="select"
+      components={{ DropdownIndicator }}
+      // theme={theme => ({
+      //   ...theme,
+      //   colors,
+      // })}
+    />
+  )
+}
+
+export { makeOption }
 
 export default SelectComponent

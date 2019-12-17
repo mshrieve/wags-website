@@ -30,13 +30,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
-        institutions: allSheetsPeople {
+        institutions: allSheetsDirectory {
           distinct(field: institution)
         }
-        positions: allSheetsPeople {
+        positions: allSheetsDirectory {
           distinct(field: position)
         }
-        people: allSheetsPeople {
+        people: allSheetsDirectory {
           nodes {
             firstName
             lastName

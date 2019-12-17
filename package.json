@@ -7,14 +7,14 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "lambda": "netlify-lambda serve src/functions",
-    "build:lambda": "netlify-lambda build src/functions",
+    "lambda:serve": "netlify-lambda serve src/functions",
+    "lambda:build": "netlify-lambda build src/functions",
+    "lambda:install": "netlify-lambda install src/functions",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \"",
-    "postinstall": "netlify-lambda install",
-    "dev": "netlify dev"
+    "postinstall": "npm run lambda:install",
+    "postbuild": "npm run lambda:build"
   },
   "dependencies": {
     "@primer/octicons-react": "^9.2.0",
@@ -44,7 +44,8 @@
     "react-helmet": "^5.2.1",
     "react-select": "^3.0.8",
     "save": "^2.4.0",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "yup": "^0.28.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

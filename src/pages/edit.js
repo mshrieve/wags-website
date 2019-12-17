@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { graphql, Link } from 'gatsby'
+import React, { useState } from 'react'
+import { graphql } from 'gatsby'
 import { navigate } from 'gatsby'
 import Input from '~/components/Input'
 import Button from '~/components/Button'
@@ -10,10 +10,10 @@ import '~/pages/global.css'
 
 export const query = graphql`
   {
-    institutions: allSheetsPeople {
+    institutions: allSheetsDirectory {
       distinct(field: institution)
     }
-    positions: allSheetsPeople {
+    positions: allSheetsDirectory {
       distinct(field: position)
     }
   }
