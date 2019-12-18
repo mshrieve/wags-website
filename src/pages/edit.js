@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import { navigate } from 'gatsby'
 import Input from '~/components/Input'
@@ -21,10 +21,8 @@ export const query = graphql`
 
 const IndexPage = ({ data, location, pageContext }) => {
   const user = location.state
-  if (!(user && user.authenticated)) {
-    navigate('email')
-    return null
-  }
+
+  useEffect(() => !user && navigate('email'), [])
 
   const makeOption = value => ({
     value,
