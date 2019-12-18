@@ -65,7 +65,10 @@ module.exports = {
         spreadsheetId: process.env.SPREADSHEET_ID,
         // spreadsheetName: 'People',
         typePrefix: 'Sheets',
-        credentials: googleSheetsCredentials,
+        credentials: {
+          client_email: process.env.CLIENT_EMAIL,
+          private_key: process.env.PRIVATE_KEY.split('\\n').join('\n'),
+        },
         // By implementing a `filterNode(node): boolean` function, you can choose to eliminate some nodes before
         // they're added to Gatsby, the default behaviour is to include all nodes:
         filterNode: node => Boolean(node),
