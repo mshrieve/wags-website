@@ -23,6 +23,10 @@ html {
   }
 }
 
+.bold {
+  font-weight: bold;
+}
+
 :root {
   --black: #111111;
   --gray1: #f0f0f0;
@@ -71,4 +75,9 @@ html {
   --yellow3: #ffffa0;
   --yellow4: #ffff78;
   --yellow5: #ffff50;
+}
+
+h1 h3 {
+  padding: 0;
+  margin: 0;
 }

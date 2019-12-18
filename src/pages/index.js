@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
-import Select from 'react-select'
+import Select from '~/components/Select'
+import Directory from '~/components/Directory'
 import { navigate } from '@reach/router'
 import Main from '../components/Main'
-import Header from '../components/Header'
 
-import './index.css'
+import './edit.css'
 
 export const query = graphql`
   {
@@ -15,79 +15,98 @@ export const query = graphql`
     positions: allSheetsDirectory {
       distinct(field: position)
     }
+    filtered: allSheetsDirectory(sort: { fields: lastName }) {
+      nodes {
+        firstName
+        lastName
+        id
+        institution
+        position
+        website
+      }
+    }
   }
 `
 
-const PositionsPage = ({ type, data }) => {
-  const [values, setValues] = useState({})
-  const handleChange = name => option =>
-    console.log(option) ||
-    setValues(values => ({
-      ...values,
-      [name]: option,
-    }))
+const filterNodes = (nodes, filter) =>
+  console.log(filter) || filter
+    ? nodes.filter(node =>
+        Object.keys(filter)
+          .map(
+            param =>
+              console.log(param, filter, node[param]) ||
+              (filter[param] && filter[param].includes(node[param]))
+          )
+          .every(x => x)
+      )
+    : nodes
 
-  const handleConfirm = () => {
-    navigate('Filter', { state: { filter: getFilterState() } })
-  }
-  const getFilterState = () =>
-    console.log(values) ||
-    Object.keys(values).reduce(
-      (state, param) => ({
-        ...state,
-        [param]: values[param].map(x => x.value),
-      }),
-      {}
-    )
+const IndexPage = ({ data, location }) => {
+  const [values, setValues] = useState({})
+  const [entries, setEntries] = useState(data.filtered.nodes)
+
+  // if values change, update the filter
+  useEffect(
+    () =>
+      setEntries(
+        // filter the entries
+        data.filtered.nodes.filter(entry =>
+          // making sure the values on  the entry match the values on  the values :D
+          Object.keys(values).every(key =>
+            values[key] ? entry[key] === values[key] : true
+          )
+        )
+      ),
+    [values]
+  )
+
+  useEffect(() => console.log(entries, values), [entries, values])
+
+  const handleChange = event =>
+    console.log(event) ||
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    })
 
   return (
     <Main>
-      <section className="index_grid">
-        <Header text={`WAGS Directory`} />
-        <section className="index_links">
-          <section className="sub_header">
-            <Link to={`/Filter`}>all</Link>
-          </section>
-          <form
-            onSubmit={event => {
-              handleConfirm()
-              event.preventDefault()
-            }}
-          >
-            <section className="index_section">
-              <h2>positions: </h2>
-              <Select
-                isMulti="true"
-                options={data.positions.distinct.map(position => ({
-                  value: position,
-                  label: position,
-                }))}
-                value={values['position']}
-                name="position"
-                onChange={handleChange('position')}
-              />
-            </section>
-
-            <section className="index_section">
-              <h2>institutions: </h2>
-              <Select
-                isMulti="true"
-                options={data.institutions.distinct.map(institution => ({
-                  value: institution,
-                  label: institution,
-                }))}
-                value={values['institution']}
-                name="institution"
-                onChange={handleChange('institution')}
-              />
-            </section>
-            <section className="index_section">
-              <button type="submit"> hi </button>
-            </section>
-          </form>
-        </section>
+      <section className="edit__grid">
+        <h1>WAGS Directory</h1>
+        <hr />
+        <span>
+          Welcome to the WAGS directory.
+          <br />
+          <Link to="/create">Create a new entry</Link>
+          {', '}
+          <Link to="/create">edit your information</Link>, or browse the
+          directory below, optionally filtering by one or more criteria.
+        </span>
+        <hr />
+        <Select
+          isMulti="true"
+          options={data.positions.distinct}
+          value={values['position']}
+          name="position"
+          placeholder={'Position'}
+          onChange={handleChange}
+        />
+        <Select
+          isMulti="true"
+          options={data.institutions.distinct}
+          value={values.institution}
+          name="institution"
+          placeholder={'Institution'}
+          onChange={handleChange}
+        />
+        <hr />
+        {entries.length > 0 ? (
+          <Directory people={entries} />
+        ) : (
+          <span>No entries match the filter.</span>
+        )}
       </section>
     </Main>
   )
 }
-export default PositionsPage
+export default IndexPage

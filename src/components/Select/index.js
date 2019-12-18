@@ -33,7 +33,8 @@ const SelectComponent = ({
 }) => {
   // we pass through only value, letting label = value
   const handleChange = option =>
-    onChange({ target: { name, value: option.value } })
+    console.log('option', option) ||
+    onChange({ target: { name, value: option[0] ? option[0].value : null } })
   return (
     <Creatable
       {...props}
