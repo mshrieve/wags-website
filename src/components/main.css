@@ -6,6 +6,7 @@
   left: 0;
   background-color: var(--gray2);
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   /* max-height: 100vh; */
   display: grid;
   grid-template-rows: auto;
