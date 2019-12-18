@@ -6,6 +6,7 @@ import { navigate } from '@reach/router'
 import Main from '../components/Main'
 
 import './edit.css'
+import './global.css'
 
 export const query = graphql`
   {
@@ -29,7 +30,7 @@ export const query = graphql`
 `
 
 const filterNodes = (nodes, filter) =>
-  console.log(filter) || filter
+  console.log('filter: ', filter) || filter
     ? nodes.filter(node =>
         Object.keys(filter)
           .map(
@@ -63,28 +64,28 @@ const IndexPage = ({ data, location }) => {
   useEffect(() => console.log(entries, values), [entries, values])
 
   const handleChange = event =>
-    console.log(event) ||
     setValues({
       ...values,
       [event.target.name]: event.target.value,
     })
 
+  useEffect(() => {
+    console.log(data.institutions.distinct)
+  }, [])
+
   return (
     <Main>
       <section className="edit__grid">
-        <h1>WAGS Directory</h1>
-        <hr />
+        <h1>Welcome to the WAGS directory.</h1>
+
         <span>
-          Welcome to the WAGS directory.
-          <br />
           <Link to="/create">Create a new entry</Link>
-          {', '}
-          <Link to="/create">edit your information</Link>, or browse the
-          directory below, optionally filtering by one or more criteria.
+          {' or '}
+          <Link to="/create">edit your information.</Link>
         </span>
         <hr />
+        <h3>Filter results:</h3>
         <Select
-          isMulti="true"
           options={data.positions.distinct}
           value={values['position']}
           name="position"
@@ -92,7 +93,6 @@ const IndexPage = ({ data, location }) => {
           onChange={handleChange}
         />
         <Select
-          isMulti="true"
           options={data.institutions.distinct}
           value={values.institution}
           name="institution"

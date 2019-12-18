@@ -3,13 +3,21 @@ import classNames from 'classnames'
 import './button.css'
 // import '../index.css'
 import Octicon from '@primer/octicons-react'
-const Button = ({ children, state, onClick, type, icon, className }) => (
+const Button = ({
+  children,
+  secondary,
+  state,
+  onClick,
+  type,
+  icon,
+  className,
+}) => (
   <button
-    className={classNames(className, {
-      button: true,
-      'grid-button--active': state === 'active',
-      'grid-button--inactive': state === 'inactive',
-    })}
+    className={classNames(
+      className,
+      'button',
+      secondary ? 'button-secondary' : 'button-main'
+    )}
     type={type}
     onClick={onClick}
   >

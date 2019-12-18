@@ -1,6 +1,5 @@
 .directory_grid {
   display: grid;
-  padding-bottom: 1rem;
   row-gap: 1rem;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;

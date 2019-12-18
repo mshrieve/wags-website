@@ -187,6 +187,7 @@ const IndexPage = ({ data, location, pageContext }) => {
             <Button
               className="edit__left-button"
               type="button"
+              secondary
               onClick={() => navigate('/')}
             >
               Cancel
