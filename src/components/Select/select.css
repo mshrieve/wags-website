@@ -8,18 +8,18 @@
   border-radius: 0px;
   border-style: none;
   border-width: 0px;
-  background: white;
+  background-color: var(--gray1);
   width: 20rem;
 }
 
 .select__control {
   border-radius: 0 !important;
   border: 1 !important;
-  background: white;
+  background-color: var(--gray1) !important;
   width: auto;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  border-color: var(--gray10) !important;
+  border-color: var(--black) !important;
   box-shadow: none !important;
 }
 

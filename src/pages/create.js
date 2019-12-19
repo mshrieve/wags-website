@@ -135,15 +135,17 @@ const IndexPage = ({ data, location, pageContext }) => {
             placeholder="Last Name"
           />
           <Select
-            // options={institutionOptions}
             name="institution"
+            creatable
+            options={data.institutions.distinct}
             value={values.institution}
             onChange={handleChange}
             placeholder={'Institution'}
           />
           <Select
             name="position"
-            // options={positionOptions}
+            creatable
+            options={data.positions.distinct}
             value={values.position}
             onChange={handleChange}
             placeholder={'Position'}
@@ -162,6 +164,7 @@ const IndexPage = ({ data, location, pageContext }) => {
           </span>
           <Select
             name="tag1"
+            creatable
             // options={{}}
             value={values.tag1}
             onChange={handleChange}
@@ -169,6 +172,7 @@ const IndexPage = ({ data, location, pageContext }) => {
           />
           <Select
             name="tag2"
+            creatable
             // options={{}}
             value={values.tag2}
             onChange={handleChange}
@@ -177,6 +181,7 @@ const IndexPage = ({ data, location, pageContext }) => {
 
           <Select
             name="tag3"
+            creatable
             // options={{}}
             value={values.tag3}
             onChange={handleChange}
