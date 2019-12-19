@@ -28,15 +28,16 @@ const SelectComponent = ({
   onChange,
   value,
   name,
+  creatable,
   placeholder,
   ...props
 }) => {
   // we pass through only value, letting label = value
   const handleChange = option =>
     onChange({ target: { name, value: option.value } })
-
+  const Component = creatable ? Creatable : Select
   return (
-    <Creatable
+    <Component
       {...props}
       name={name}
       options={options.filter(option => option.length > 0).map(makeOption)}

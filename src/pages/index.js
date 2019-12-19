@@ -3,7 +3,8 @@ import { graphql, Link } from 'gatsby'
 import Select from '~/components/Select'
 import Directory from '~/components/Directory'
 import { navigate } from '@reach/router'
-import Main from '../components/Main'
+import Main from '~/components/Main'
+import Button from '~/components/Button'
 
 import './edit.css'
 import './global.css'
@@ -16,6 +17,15 @@ export const query = graphql`
     positions: allSheetsDirectory {
       distinct(field: position)
     }
+    tag1: allSheetsDirectory {
+      distinct(field: tag1)
+    }
+    tag2: allSheetsDirectory {
+      distinct(field: tag2)
+    }
+    tag3: allSheetsDirectory {
+      distinct(field: tag3)
+    }
     filtered: allSheetsDirectory(sort: { fields: lastName }) {
       nodes {
         firstName
@@ -24,23 +34,15 @@ export const query = graphql`
         institution
         position
         website
+        tag1
+        tag2
+        tag3
       }
     }
   }
 `
 
-const filterNodes = (nodes, filter) =>
-  console.log('filter: ', filter) || filter
-    ? nodes.filter(node =>
-        Object.keys(filter)
-          .map(
-            param =>
-              console.log(param, filter, node[param]) ||
-              (filter[param] && filter[param].includes(node[param]))
-          )
-          .every(x => x)
-      )
-    : nodes
+const checkTags = (node, tag) => [node.tag1, node.tag2, node.tag3].includes(tag)
 
 const IndexPage = ({ data, location }) => {
   const [values, setValues] = useState({})
@@ -53,9 +55,13 @@ const IndexPage = ({ data, location }) => {
         // filter the entries
         data.filtered.nodes.filter(entry =>
           // making sure the values on  the entry match the values on  the values :D
-          Object.keys(values).every(key =>
-            values[key] ? entry[key] === values[key] : true
-          )
+          [
+            values.position ? entry.position === values.position : true,
+            values.institution
+              ? entry.institution === values.institution
+              : true,
+            values.tag ? checkTags(entry, values.tag) : true,
+          ].every(x => x)
         )
       ),
     [values]
@@ -69,9 +75,16 @@ const IndexPage = ({ data, location }) => {
       [event.target.name]: event.target.value,
     })
 
-  useEffect(() => {
-    console.log(data.institutions.distinct)
-  }, [])
+  const handleClear = event => {
+    event.preventDefault()
+    setValues({})
+  }
+
+  const tags = [
+    ...data.tag1.distinct,
+    ...data.tag2.distinct,
+    ...data.tag3.distinct,
+  ]
 
   return (
     <Main>
@@ -84,7 +97,14 @@ const IndexPage = ({ data, location }) => {
           <Link to="/create">edit your information.</Link>
         </span>
         <hr />
-        <h3>Filter results:</h3>
+        <section className="horizontal-grid">
+          <h3>Filter results:</h3>
+          {[values.position, values.institution, values.tag].some(x => x) && (
+            <a href="" className="align-right" onClick={handleClear}>
+              clear
+            </a>
+          )}
+        </section>
         <Select
           options={data.positions.distinct}
           value={values['position']}
@@ -99,7 +119,15 @@ const IndexPage = ({ data, location }) => {
           placeholder={'Institution'}
           onChange={handleChange}
         />
+        <Select
+          options={tags}
+          value={values.tag}
+          name="tag"
+          placeholder={'Tag'}
+          onChange={handleChange}
+        />
         <hr />
+
         {entries.length > 0 ? (
           <Directory people={entries} />
         ) : (

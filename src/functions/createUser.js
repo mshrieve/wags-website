@@ -23,8 +23,6 @@ exports.handler = async (event, context) => {
 
   // generate userId
   const sheet = await getSheet()
-
-  console.log('sheet: ', sheet)
   const userId = await generateId(sheet)
 
   // const emailExists = await includes(sheet, 'email', email)

@@ -41,6 +41,10 @@ hr {
   grid-template-columns: 1fr 1fr;
 }
 
+.align-right {
+  justify-self: right;
+}
+
 h1,
 h2,
 h3,
