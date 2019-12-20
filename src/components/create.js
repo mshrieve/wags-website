@@ -1,5 +1,4 @@
 import GoogleSheet from 'google-spreadsheet'
-import querystring from 'querystring'
 
 require('dotenv').config({
   path: `.env`,

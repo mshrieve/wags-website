@@ -25,12 +25,10 @@ const getSheet = () =>
   new Promise((resolve, reject) => {
     const sheet = authenticateServiceAccount()
       .then(() => getInfo())
-      .then(
-        info =>
-          console.log(info) ||
-          info.worksheets.find(
-            sheet => sheet.title === process.env.SPREADSHEET_USER_DIRECTORY
-          )
+      .then(info =>
+        info.worksheets.find(
+          sheet => sheet.title === process.env.SPREADSHEET_USER_DIRECTORY
+        )
       )
     sheet ? resolve(sheet) : reject()
   })

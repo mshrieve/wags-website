@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
 import Select from '~/components/Select'
 import Directory from '~/components/Directory'
-import { navigate } from '@reach/router'
 import Main from '~/components/Main'
-import Button from '~/components/Button'
 
 import './edit.css'
 import './global.css'
@@ -47,13 +45,19 @@ const checkTags = (node, tag) => [node.tag1, node.tag2, node.tag3].includes(tag)
 const IndexPage = ({ data, location }) => {
   const [values, setValues] = useState({})
   const [entries, setEntries] = useState(data.filtered.nodes)
+  const [directory, setDirectory] = useState(data.filtered.nodes)
+  const tags = [
+    ...data.tag1.distinct,
+    ...data.tag2.distinct,
+    ...data.tag3.distinct,
+  ]
 
   // if values change, update the filter
   useEffect(
     () =>
       setEntries(
         // filter the entries
-        data.filtered.nodes.filter(entry =>
+        directory.filter(entry =>
           // making sure the values on  the entry match the values on  the values :D
           [
             values.position ? entry.position === values.position : true,
@@ -64,10 +68,17 @@ const IndexPage = ({ data, location }) => {
           ].every(x => x)
         )
       ),
-    [values]
+    [values, directory]
   )
 
-  useEffect(() => console.log(entries, values), [entries, values])
+  // enable the following to fetch very recent updates to the repository
+  // useEffect(() => {
+  //   fetch('/.netlify/functions/getDirectory')
+  //     .then(result => result.json())
+  //     .then(json => console.log(json) || setDirectory(json.directory))
+  //     .catch(error => console.log(error))
+  //   return undefined
+  // }, [])
 
   const handleChange = event =>
     setValues({
@@ -80,21 +91,17 @@ const IndexPage = ({ data, location }) => {
     setValues({})
   }
 
-  const tags = [
-    ...data.tag1.distinct,
-    ...data.tag2.distinct,
-    ...data.tag3.distinct,
-  ]
-
   return (
     <Main>
       <section className="edit__grid">
         <h1>Welcome to the WAGS directory.</h1>
 
         <span>
-          <Link to="/create">Create a new entry</Link>
-          {' or '}
-          <Link to="/create">edit your information.</Link>
+          <Link to="/create">Create a new entry.</Link>
+          {/* to be implemented ! */}
+          {/* <Link className="line-through" to="/create">
+            edit your information.
+          </Link> */}
         </span>
         <hr />
         <section className="horizontal-grid">
@@ -106,13 +113,15 @@ const IndexPage = ({ data, location }) => {
           )}
         </section>
         <Select
+          isSearchable={false}
+          name="position"
           options={data.positions.distinct}
           value={values['position']}
-          name="position"
           placeholder={'Position'}
           onChange={handleChange}
         />
         <Select
+          isSearchable={false}
           options={data.institutions.distinct}
           value={values.institution}
           name="institution"
@@ -120,6 +129,7 @@ const IndexPage = ({ data, location }) => {
           onChange={handleChange}
         />
         <Select
+          isSearchable={false}
           options={tags}
           value={values.tag}
           name="tag"

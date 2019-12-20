@@ -1,6 +1,7 @@
 import text from './utils/text'
 import { getSheet, includes, addRow, generateId } from './utils/sheets'
 import { reject, resolve } from './utils/handler'
+import rebuild from './utils/rebuild'
 
 // CREATE USER
 exports.handler = async (event, context) => {
@@ -11,7 +12,7 @@ exports.handler = async (event, context) => {
     institution,
     position,
     website,
-
+    advisor,
     tag1,
     tag2,
     tag3,
@@ -45,6 +46,7 @@ exports.handler = async (event, context) => {
     institution,
     position,
     website,
+    advisor,
     tag1,
     tag2,
     tag3,
@@ -58,12 +60,17 @@ exports.handler = async (event, context) => {
         institution,
         position,
         website,
+        advisor,
         tag1,
         tag2,
         tag3,
-      }) =>
-        console.log('user created success ' + email) ||
-        resolve({
+      }) => {
+        console.log('user created success ' + email)
+
+        // rebuild the site !!!
+        // be careful !! this uses up build minutes !
+        rebuild(email)
+        return resolve({
           email,
           userId: userid,
           firstName: firstname,
@@ -71,10 +78,12 @@ exports.handler = async (event, context) => {
           institution,
           position,
           website,
+          advisor,
           tag1,
           tag2,
           tag3,
         })
+      }
     )
     .catch(error => console.log('error', error) || reject(error))
 }

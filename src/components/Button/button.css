@@ -43,6 +43,13 @@
   background-color: var(--gray6);
 }
 
+.button-disabled {
+  background-color: var(--gray4);
+  color: var(--gray8);
+  border-color: var(--gray8);
+  cursor: default;
+}
+
 .button-text {
   text-align: center;
 }

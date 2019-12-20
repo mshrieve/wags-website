@@ -7,6 +7,7 @@ const Card = ({
   position,
   institution,
   website,
+  advisor,
   tag1,
   tag2,
   tag3,

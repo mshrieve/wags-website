@@ -11,12 +11,17 @@ const Button = ({
   type,
   icon,
   className,
+  disabled,
 }) => (
   <button
     className={classNames(
       className,
       'button',
-      secondary ? 'button-secondary' : 'button-main'
+      disabled
+        ? 'button-disabled'
+        : secondary
+        ? 'button-secondary'
+        : 'button-main'
     )}
     type={type}
     onClick={onClick}

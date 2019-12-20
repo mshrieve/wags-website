@@ -1,7 +1,6 @@
 .edit__grid {
   display: grid;
   grid-auto-rows: auto;
-  /* grid-template-columns: 1fr; */
   grid-auto-flow: rows;
   align-content: start;
   row-gap: 1rem;
@@ -43,6 +42,10 @@ hr {
 
 .align-right {
   justify-self: right;
+}
+
+.line-through {
+  text-decoration: line-through;
 }
 
 h1,
