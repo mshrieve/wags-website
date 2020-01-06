@@ -11,12 +11,14 @@
   grid-template-columns: 1fr 1fr;
   /* border-bottom: 1px solid lightgray; */
   /* padding-bottom: 1rem; */
+  padding: 0.8rem;
   row-gap: 0.2rem;
+  column-gap: 0.8rem;
+
   grid-auto-flow: column;
   place-items: start;
   align-items: center;
   background-color: var(--gray3);
-  padding: 1rem;
   border: 1px solid var(--black);
 }
 
